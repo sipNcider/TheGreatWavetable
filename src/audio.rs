@@ -25,9 +25,9 @@ pub fn start_audio_engine(synth: Arc<Synth>) -> cpal::Stream {
 
                 for voice in voices.iter_mut() {
 
-                    let index = (voice.phase * (table.len() as f32 - 1.0)) as usize;
+                    let index = (voice.phase * (table.len() as f32 - 1.0));
 
-                    sum += table[index];
+                    sum += Synth::get_lerp(table, &index);
 
                     let phase_increment = voice.freq / sample_rate;
                     voice.phase = (voice.phase + phase_increment) % 1.0;

@@ -104,4 +104,16 @@ impl Synth {
             WaveType::Square => make_square_wave(1024),
         };
     }
+
+    pub fn get_lerp(table: &Vec<f32>, index: &f32) -> f32 {
+        let floor = index.floor() as usize;
+        let ceiling = index.ceil() as usize;
+        let difference = table[ceiling] - table[floor];
+        if *index < 1.0 {
+            return (difference * index) + table[floor];
+        } else {
+            let percent = index % 1.0;
+            return (difference * percent) + table[floor];
+        }
+    }
 }
