@@ -18,8 +18,7 @@ pub fn start_audio_engine(synth: Arc<Synth>) -> cpal::Stream {
             if !voices.is_empty() {
                 println!("Active voices: {}", voices.len());
             }
-            let table = &synth.wave_table;
-            let table_len = table.len() as f32;
+            let table = &synth.wave_table.lock().unwrap();
 
             for frame in data.chunks_mut(channels) {
                 let mut sum = 0.0;

@@ -1,4 +1,4 @@
-use crate::synthesizer::Synth;
+use crate::synthesizer::{Synth, WaveType};
 use std::sync::Arc;
 
 use winit::application::ApplicationHandler;
@@ -62,6 +62,13 @@ impl ApplicationHandler for App {
                 event_loop.exit();
             }
             WindowEvent::KeyboardInput {event, ..} => {
+                match event.physical_key {
+                    PhysicalKey::Code(KeyCode::Digit1) => self.synth.change_wave(WaveType::Sine),
+                    PhysicalKey::Code(KeyCode::Digit2) => self.synth.change_wave(WaveType::Triangle),
+                    PhysicalKey::Code(KeyCode::Digit3) => self.synth.change_wave(WaveType::Saw),
+                    PhysicalKey::Code(KeyCode::Digit4) => self.synth.change_wave(WaveType::Square),
+                    _ => ()
+                };
                 if let Some(freq) = get_frequency_from_key(event.physical_key) {
                     match event.state {
                         ElementState::Pressed => {
