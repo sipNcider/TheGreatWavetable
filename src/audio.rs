@@ -4,13 +4,14 @@ use crate::synthesizer::Synth;
 
 pub fn start_audio_engine(synth: Arc<Synth>) -> cpal::Stream {
 
+    // CPAL config
     let host = cpal::default_host();
     let device = host.default_output_device().expect("No output device found");
     let config: cpal::StreamConfig = device.default_output_config().unwrap().into();
-
     let sample_rate = config.sample_rate as f32;
     let channels = config.channels as usize;
 
+    // Start audio thread
     let stream = device.build_output_stream(
         &config,
         move |data: &mut [f32], _: &cpal::OutputCallbackInfo| {
@@ -25,7 +26,7 @@ pub fn start_audio_engine(synth: Arc<Synth>) -> cpal::Stream {
 
                 for voice in voices.iter_mut() {
 
-                    let index = (voice.phase * (table.len() as f32 - 1.0));
+                    let index = voice.phase * (table.len() as f32 - 1.0);
 
                     sum += Synth::get_lerp(table, &index);
 

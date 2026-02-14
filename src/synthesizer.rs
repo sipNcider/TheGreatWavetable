@@ -1,5 +1,10 @@
 use std::{sync::Mutex};
 
+/* 
+Just storing synth data and wave functions in this mod.
+You can add your own waves here (dont forget to add key input in keyboard)
+*/
+
 pub enum WaveType {
     Sine,
     Square,

@@ -12,7 +12,7 @@ use winit::keyboard::{KeyCode, PhysicalKey};
 fn get_frequency_from_key(key: PhysicalKey) -> Option<f32> {
     if let PhysicalKey::Code(code) = key {
         match code {
-            // White Keys (Middle Row)
+            // White Keys
             KeyCode::KeyA => Some(261.63), // C4
             KeyCode::KeyS => Some(293.66), // D4
             KeyCode::KeyD => Some(329.63), // E4
@@ -23,10 +23,10 @@ fn get_frequency_from_key(key: PhysicalKey) -> Option<f32> {
             KeyCode::KeyK => Some(523.25), // C5
             KeyCode::KeyL => Some(587.33), // D5
 
-            // Black Keys (Top Row)
+            // Black Keys
             KeyCode::KeyW => Some(277.18), // C#4
             KeyCode::KeyE => Some(311.13), // D#4
-            // KeyR is empty (between E and F)
+            // KeyR is empty 
             KeyCode::KeyT => Some(369.99), // F#4
             KeyCode::KeyY => Some(415.30), // G#4
             KeyCode::KeyU => Some(466.16), // A#4

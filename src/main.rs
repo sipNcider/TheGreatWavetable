@@ -12,7 +12,7 @@ fn main() {
     
     let _stream = audio::start_audio_engine(synth.clone());
 
-    println!("Synth initialized!");
+    println!("Synth up.");
     println!("Use Home Row (A-L) for white keys and (W-P) for black keys.");
     println!("Close the window to exit.");
 
